@@ -1,6 +1,10 @@
 package com.skillsup.patterns;
 
+import com.skillsup.patterns.checUser.ChainOfResponsibilityEntryPoint;
 import com.skillsup.patterns.dto.Credentials;
+import com.skillsup.patterns.dto.User;
+
+import java.util.Map;
 
 public interface UserAuthenticator {
 
@@ -10,4 +14,12 @@ public interface UserAuthenticator {
 	 * @return role of the user who's credentials are checked
 	 */
 	UserRole authenticate(Credentials credentials);
+
+	boolean userIssue(Credentials credentials);
+
+	void setMiddleware(ChainOfResponsibilityEntryPoint chainOfResponsibilityEntryPoint);
+
+	boolean logIn(Credentials credentials, Map<UserRole, Boolean> access);
+
+
 }

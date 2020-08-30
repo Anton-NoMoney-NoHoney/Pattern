@@ -1,7 +1,10 @@
-package com.skillsup.patterns.service;
+package com.skillsup.patterns.checUser;
 
 import com.skillsup.patterns.UserAuthenticator;
+import com.skillsup.patterns.UserRole;
 import com.skillsup.patterns.dto.Credentials;
+
+import java.util.Map;
 
 public class UserExistChaioOfResponsibility extends ChainOfResponsibilityEntryPoint {
 
@@ -11,13 +14,13 @@ public class UserExistChaioOfResponsibility extends ChainOfResponsibilityEntryPo
         this.userAuthenticator = userAuthenticator;
     }
 
-    public boolean check(Credentials credentials) {
+    public boolean check(Credentials credentials, Map<UserRole, Boolean> access) {
         if (!userAuthenticator.userIssue(credentials)) {
-            System.out.println("This email is not registered!");
+            System.out.println("This user is not registered!");
             return false;
         }
 
-        return checkNext(credentials);
+        return checkNext(credentials,access);
     }
 
 

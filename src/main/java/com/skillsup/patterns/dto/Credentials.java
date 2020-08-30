@@ -16,4 +16,28 @@ public class Credentials {
 	public String getPassword() {
 		return password;
 	}
+
+	public static CredentialsBuilder bilder(){
+		return new CredentialsBuilder();
+	}
+
+	public static class CredentialsBuilder{
+		private  String login;
+		private  String password;
+
+		public CredentialsBuilder login(String login){
+			this.login=login;
+			return this;
+		}
+
+		public CredentialsBuilder password(String password){
+			this.password=password;
+			return this;
+		}
+
+		public Credentials build(){
+			return new Credentials(this.login,this.password);
+		}
+	}
+
 }
